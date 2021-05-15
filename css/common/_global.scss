@@ -73,3 +73,7 @@ body {
   margin: 0 auto;
   background: #fff;
 }
+*::selection {
+  background-color: #6d6d6d;
+  color: #FFF;
+}

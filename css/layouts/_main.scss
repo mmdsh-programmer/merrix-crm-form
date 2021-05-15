@@ -259,10 +259,10 @@ input.error {
   font-family: $body-font !important;
   text-align: right;
 }
-.close-jq-toast-single{
+.close-jq-toast-single {
   left: 7px;
 }
-#loading{
+#loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -273,11 +273,11 @@ input.error {
   align-items: center;
   background-color: rgba(176, 190, 197, 0.9);
   z-index: 999;
-  span{
+  span {
     font-size: 20px;
   }
 }
-.select-icon{
+.select-icon {
   right: unset;
   left: 0;
   top: 11px;

@@ -140,6 +140,16 @@ body {
   background: #fff;
 }
 
+*::-moz-selection {
+  background-color: #6d6d6d;
+  color: #FFF;
+}
+
+*::selection {
+  background-color: #6d6d6d;
+  color: #FFF;
+}
+
 .signup-form {
   width: 55%;
 }
