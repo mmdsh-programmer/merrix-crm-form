@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main class="main">
+        <div id="loading">
+            <span>در حال ارسال اطلاعات...</span>
+        </div>
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="signin-form">
+                        <h2 class="form-title">ورود</h2>
+                        <div class="form-group">
+                            <label for="email">نام کاربری :</label>
+                            <input type="email" name="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">رمز عبور :</label>
+                            <input type="password" name="password" id="password" required>
+                        </div>
+                        <div class="form-submit">
+                            <input type="submit" value="تایید" class="submit" name="submit" id="submit" />
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-img">
+                    <img src="images/signup.jpg" alt="signup-image" title="ورود">
+                    <div class="cover"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="text/javascript" src="map/js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+        integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+        crossorigin="anonymous"></script>
+    <script src="js/signin.js"></script>
+</body>
+
+</html>
