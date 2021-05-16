@@ -13,10 +13,12 @@ $phone = $_POST['phone'];
 $province = $_POST['province'];
 $city = $_POST['city'];
 $address = $_POST['address'];
+$area = $_POST['area'];
 $job = $_POST['job'];
 $instagram = $_POST['instagram'];
 $telegram = $_POST['telegram'];
 $whatsapp = $_POST['whatsapp'];
+$description = $_POST['description'];
 $website = $_POST['website'];
 $clue = $_POST['clue'];
 $service_type = $_POST['service_type'];
@@ -38,8 +40,8 @@ if (mysqli_num_rows($duplicateLandLine) > 0) {
 } else if (mysqli_num_rows($duplicateWhatsapp) > 0) {
     echo json_encode(array("statusCode" => 205));
 } else {
-    $sql = "INSERT INTO `gheir_hozoori`(`user_email`,`shop_name`,`landline`,`phone`,`province`,`city`,`address`,`job`,`instagram`,`telegram`,`whatsapp`,`website`,`clue`,`service_type`,`lat`,`lng`) 
-        VALUES ('$email', '$store_name', '$landline', '$phone', '$province', '$city', '$address', '$job', '$instagram', '$telegram', '$whatsapp', '$website', '$clue', '$service_type', '$lat', '$lng')";
+    $sql = "INSERT INTO `gheir_hozoori`(`user_email`,`shop_name`,`landline`,`phone`,`province`,`city`,`area`,`address`,`job`,`instagram`,`telegram`,`whatsapp`,`description`,`website`,`clue`,`service_type`,`lat`,`lng`) 
+        VALUES ('$email', '$store_name', '$landline', '$phone', '$province', '$city', '$area', '$address', '$job', '$instagram', '$telegram', '$whatsapp', '$description', '$website', '$clue', '$service_type', '$lat', '$lng')";
     if (mysqli_query($conn, $sql)) {
         echo json_encode(array("statusCode" => 200));
     } else {
