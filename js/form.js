@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let signedInUser = localStorage.getItem("email");
   if (signedInUser == null) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 
   $("#signout").click(() => {
@@ -189,10 +189,12 @@ $(document).ready(function () {
       let province = $("#province").val();
       let city = $("#city").val();
       let address = $("#address").val();
+      let area = $("#area").val();
       let job = $("#job").val();
       let instagram = $("#instagram").val();
       let telegram = $("#telegram").val();
       let whatsapp = $("#whatsapp").val();
+      let description = $("#description").val();
       let website = $("#website").val();
       let clue = $("#clue").val();
       let service_type = $("#service-type").val();
@@ -223,10 +225,12 @@ $(document).ready(function () {
             province: province,
             city: city,
             address: address,
+            area: area,
             job: job,
             instagram: instagram,
             telegram: telegram,
             whatsapp: whatsapp,
+            description: description,
             website: website,
             clue: clue,
             service_type: service_type,
