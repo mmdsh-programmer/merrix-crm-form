@@ -9,10 +9,6 @@ $(document).ready(function () {
     window.location.href = "index.html";
   });
 
-  /*window.onbeforeunload = () => {
-    localStorage.clear();
-  }*/
-
   //map
   let app = new Mapp({
     element: "#app",
@@ -83,7 +79,7 @@ $(document).ready(function () {
   });
   //map
 
-  let validation = $("#gheir-hozoori").validate({
+  $("#gheir-hozoori").validate({
     rules: {
       store_name: {
         required: true,

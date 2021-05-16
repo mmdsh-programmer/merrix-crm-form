@@ -1,6 +1,6 @@
 $(document).ready(function () {
   if(localStorage.getItem("email")){
-    window.location.href = "service-type.html";
+    window.location.href = "form.html";
   }
   $("#signin-form").validate({
     rules: {
