@@ -11,8 +11,8 @@ $(document).ready(function () {
 
   let landLineValidation = new RegExp('^0[0-9]{2,}[0-9]{7,}$');
   let phoneValidation = new RegExp('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}');
-  let instagramValidation = new RegExp('(https?)?:?(www)?instagram\.com/[a-z].{3}');
-  let telegramValidation = new RegExp('(https?)?:?(www)?t\.me/[a-z].{3}');
+  let instagramValidation = new RegExp('^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$');
+  let telegramValidation = new RegExp('^[a-z0-9_-]{3,16}$');
 
   //map
   let app = new Mapp({
@@ -224,14 +224,14 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (instagram != "" && !instagramValidation.exec(finalInstagram)) {
+      } else if (instagram != "" && !instagramValidation.exec(instagram)) {
         $.toast({
           heading: "آیدی اینستاگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
           icon: "error",
           position: "top-left",
         });
-      } else if (telegram != "" && !telegramValidation.exec(finalTelegram)) {
+      } else if (telegram != "" && !telegramValidation.exec(telegram)) {
         $.toast({
           heading: "آیدی تلگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
