@@ -1,13 +1,18 @@
 $(document).ready(function () {
   let signedInUser = localStorage.getItem("email");
   if (signedInUser == null) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 
   $("#signout").click(() => {
     localStorage.clear();
     window.location.href = "index.html";
   });
+
+  let landLineValidation = new RegExp('^0[0-9]{2,}[0-9]{7,}$');
+  let phoneValidation = new RegExp('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}');
+  let instagramValidation = new RegExp('(https?)?:?(www)?instagram\.com/[a-z].{3}');
+  let telegramValidation = new RegExp('(https?)?:?(www)?t\.me/[a-z].{3}');
 
   //map
   let app = new Mapp({
@@ -97,6 +102,12 @@ $(document).ready(function () {
         minlength: 11,
         maxlength: 11,
       },
+      whatsapp: {
+        required: false,
+        digits: true,
+        minlength: 11,
+        maxlength: 11,
+      },
       province: {
         required: true,
       },
@@ -109,18 +120,6 @@ $(document).ready(function () {
       },
       job: {
         required: true,
-      },
-      instagram: {
-        required: false,
-        url: true
-      },
-      telegram: {
-        required: false,
-        url: true
-      },
-      whatsapp: {
-        required: false,
-        url: true
       },
       website: {
         required: false,
@@ -145,6 +144,11 @@ $(document).ready(function () {
         minlength: "حداقل طول 11 رقم میباشد",
         maxlength: "حداکثر طول 11 رقم میباشد",
       },
+      whatsapp: {
+        digits: "فقط عدد مجاز است",
+        minlength: "حداقل طول 11 رقم میباشد",
+        maxlength: "حداکثر طول 11 رقم میباشد",
+      },
       province: {
         required: "پر کردن این فیلد اجباری است"
       },
@@ -156,15 +160,6 @@ $(document).ready(function () {
       },
       job: {
         required: "پر کردن این فیلد اجباری است",
-      },
-      instagram: {
-        url: "لینک وارد شده صحیح نیست"
-      },
-      telegram: {
-        url: "لینک وارد شده صحیح نیست"
-      },
-      whatsapp: {
-        url: "لینک وارد شده صحیح نیست"
       },
       website: {
         url: "لینک وارد شده صحیح نیست"
@@ -198,6 +193,9 @@ $(document).ready(function () {
       let website = $("#website").val();
       let clue = $("#clue").val();
       let service_type = $("#service-type").val();
+      let finalStoreName = `${job} ${store_name}`;
+      let finalInstagram = `https://instagram.com/${instagram}`;
+      let finalTelegram = `https://t.me/${telegram}`;
       if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
         $.toast({
           heading: "لطفا حداقل یک لینک شبکه اجتماعی یا شماره تلفن وارد کنید",
@@ -212,6 +210,34 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
+      } else if (landline != "" && !landLineValidation.exec(landline)) {
+        $.toast({
+          heading: "فرمت تلفن ثابت وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
+      } else if (phone != "" && !phoneValidation.exec(phone)) {
+        $.toast({
+          heading: "فرمت شماره همراه وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
+      } else if (instagram != "" && !instagramValidation.exec(finalInstagram)) {
+        $.toast({
+          heading: "آیدی اینستاگرام وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
+      } else if (telegram != "" && !telegramValidation.exec(finalTelegram)) {
+        $.toast({
+          heading: "آیدی تلگرام وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
       } else {
         $("#loading").fadeIn().css("display", "flex");
         $.ajax({
@@ -219,7 +245,7 @@ $(document).ready(function () {
           type: "POST",
           data: {
             email: signedInUser,
-            store_name: store_name,
+            store_name: finalStoreName,
             landline: landline,
             phone: phone,
             province: province,
@@ -227,8 +253,8 @@ $(document).ready(function () {
             address: address,
             area: area,
             job: job,
-            instagram: instagram,
-            telegram: telegram,
+            instagram: finalInstagram,
+            telegram: finalTelegram,
             whatsapp: whatsapp,
             description: description,
             website: website,

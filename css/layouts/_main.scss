@@ -283,3 +283,16 @@ input.error {
   top: 11px;
   bottom: unset;
 }
+.text-area {
+  display: block;
+  width: 100%;
+  border: 1px solid $border-color;
+  padding: 11px 20px;
+  box-sizing: border-box;
+  font-family: $body-font;
+  font-weight: 500;
+  font-size: 13px;
+  &:focus {
+    border: 1px solid $orange-color;
+  }
+}

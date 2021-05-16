@@ -524,6 +524,22 @@ input.error {
   bottom: unset;
 }
 
+.text-area {
+  display: block;
+  width: 100%;
+  border: 1px solid #ebebeb;
+  padding: 11px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "shabnam";
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.text-area:focus {
+  border: 1px solid #ff6801;
+}
+
 @media screen and (max-width: 992px) {
   .container {
     width: calc(100% - 40px);

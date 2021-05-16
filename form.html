@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
         integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -31,17 +31,28 @@
                     <form method="POST" class="register-form" id="gheir-hozoori">
                         <h2 class="form-title">فرم ثبت اطلاعات</h2>
                         <div class="form-group">
+                            <label for="service-type">نوع سرویس :</label>
+                            <div class="form-select">
+                                <select name="service-type" id="service-type">
+                                    <option value="حضوری">حضوری</option>
+                                    <option value="غیر حضوری">غیر حضوری</option>
+                                </select>
+                                <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="store_name">نام فروشگاه :</label>
-                            <input type="text" name="store_name" id="store_name" required />
+                            <input type="text" name="store_name" id="store_name" placeholder="مثال : پاپیروس"
+                                required />
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="landline">شماره تماس ثابت :</label>
-                                <input type="tel" name="landline" id="landline" />
+                                <input type="tel" name="landline" id="landline" placeholder="مثال : 05135556644" />
                             </div>
                             <div class="form-group">
                                 <label for="phone">شماره تماس همراه :</label>
-                                <input type="tel" name="phone" id="phone" />
+                                <input type="tel" name="phone" id="phone" placeholder="مثال : 09125558877" />
                             </div>
                         </div>
                         <div class="form-row">
@@ -62,11 +73,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="address">آدرس :</label>
+                            <textarea name="address" id="address" rows="2" class="text-area"></textarea>
+                        </div>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="address">آدرس :</label>
-                                <input type="text" name="address" id="address" />
-                            </div>
                             <div class="form-group">
                                 <label for="area">منطقه :</label>
                                 <div class="form-select">
@@ -98,58 +109,49 @@
                                     <span class="select-icon"><i class="fa fa-angle-down"></i></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="job">رسته شغلی :</label>
-                            <div class="form-select">
-                                <select name="job" id="job">
-                                    <option value=""></option>
-                                    <option value="لوازم التحریر">لوازم التحریر</option>
-                                    <option value="کتاب فروشی">کتاب فروشی</option>
-                                    <option value="خرازی">خرازی</option>
-                                    <option value="گل فروشی">گل فروشی</option>
-                                    <option value="ابزار گل">ابزار گل</option>
-                                    <option value="مارکت">مارکت</option>
-                                    <option value="تم تولد">تم تولد</option>
-                                    <option value="قنادی">قنادی</option>
-                                    <option value="لوازم قنادی">لوازم قنادی</option>
-                                    <option value="اسباب بازی">اسباب بازی</option>
-                                    <option value="گالری - کادویی">گالری - کادویی</option>
-                                    <option value="مشتری نهایی">مشتری نهایی</option>
-                                    <option value="لوازم اداری">لوازم اداری</option>
-                                    <option value="فروشگاه آنلاین">فروشگاه آنلاین</option>
-                                    <option value="سایر">سایر</option>
-                                </select>
-                                <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                            <div class="form-group">
+                                <label for="job">رسته شغلی :</label>
+                                <div class="form-select">
+                                    <select name="job" id="job">
+                                        <option value=""></option>
+                                        <option value="لوازم التحریر">لوازم التحریر</option>
+                                        <option value="کتاب فروشی">کتاب فروشی</option>
+                                        <option value="خرازی">خرازی</option>
+                                        <option value="گل فروشی">گل فروشی</option>
+                                        <option value="ابزار گل">ابزار گل</option>
+                                        <option value="مارکت">مارکت</option>
+                                        <option value="تم تولد">تم تولد</option>
+                                        <option value="قنادی">قنادی</option>
+                                        <option value="لوازم قنادی">لوازم قنادی</option>
+                                        <option value="اسباب بازی">اسباب بازی</option>
+                                        <option value="گالری - کادویی">گالری - کادویی</option>
+                                        <option value="مشتری نهایی">مشتری نهایی</option>
+                                        <option value="لوازم اداری">لوازم اداری</option>
+                                        <option value="فروشگاه آنلاین">فروشگاه آنلاین</option>
+                                        <option value="سایر">سایر</option>
+                                    </select>
+                                    <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="instagram">آدرس اینستاگرام :</label>
-                                <input type="url" name="instagram" id="instagram" />
+                                <label for="instagram">آیدی اینستاگرام :</label>
+                                <input type="text" name="instagram" id="instagram" placeholder="مثال : merrix"/>
                             </div>
                             <div class="form-group">
-                                <label for="telegram">آدرس تلگرام :</label>
-                                <input type="url" name="telegram" id="telegram" />
+                                <label for="telegram">آیدی تلگرام :</label>
+                                <input type="text" name="telegram" id="telegram" placeholder="مثال : merrix"/>
                             </div>
                             <div class="form-group">
-                                <label for="whatsapp">آدرس واتس اپ :</label>
-                                <input type="url" name="whatsapp" id="whatsapp" />
+                                <label for="whatsapp">شماره واتس اپ :</label>
+                                <input type="tel" name="whatsapp" id="whatsapp" placeholder="مثال : 09125558877"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description">توضیحات :</label>
                             <input type="text" name="description" id="description" />
-                        </div>
-                        <div class="form-group">
-                            <label for="service-type">نوع سرویس :</label>
-                            <div class="form-select">
-                                <select name="service-type" id="service-type">
-                                    <option value="حضوری">حضوری</option>
-                                    <option value="غیر حضوری">غیر حضوری</option>
-                                </select>
-                                <span class="select-icon"><i class="fa fa-angle-down"></i></span>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label for="website">وبسایت :</label>
