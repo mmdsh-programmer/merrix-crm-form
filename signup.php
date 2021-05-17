@@ -32,3 +32,4 @@ if ($_POST['type'] == 2) {
 	}
 	mysqli_close($conn);
 }
+?>

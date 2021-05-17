@@ -49,3 +49,4 @@ if (mysqli_num_rows($duplicateLandLine) > 0) {
     }
 }
 mysqli_close($conn);
+?>
