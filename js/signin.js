@@ -32,7 +32,7 @@ $(document).ready(function () {
       let password = $("#password").val();
       $("#loading").fadeIn().css("display","flex");
       $.ajax({
-        url: "http://mohammad-shakeri.ir/merrix-2/signup.php",
+        url: "https://www.merrix.com/addlead/signup.php",
         type: "POST",
         data: {
           type: 2,

@@ -241,7 +241,7 @@ $(document).ready(function () {
       } else {
         $("#loading").fadeIn().css("display", "flex");
         $.ajax({
-          url: "http://mohammad-shakeri.ir/merrix-2/gheir-hozoori.php",
+          url: "https://www.merrix.com/addlead/gheir-hozoori.php",
           type: "POST",
           data: {
             email: signedInUser,

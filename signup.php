@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "h130783_form";
-$password = "Mmd920517410@";
-$db = "h130783_form";
+$username = "merrixc2_addlead";
+$password = "BwoF5JIczo";
+$db = "merrixc2_addlead";
 $conn = mysqli_connect($servername, $username, $password, $db);
 if ($_POST['type'] == 1) {
 	$email = $_POST['email'];

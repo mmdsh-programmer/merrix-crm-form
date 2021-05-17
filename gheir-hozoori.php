@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 $servername = "localhost";
-$username = "h130783_form";
-$password = "Mmd920517410@";
-$db = "h130783_form";
+$username = "merrixc2_addlead";
+$password = "BwoF5JIczo";
+$db = "merrixc2_addlead";
 $conn = mysqli_connect($servername, $username, $password, $db);
 mysqli_set_charset($conn, "utf8");
 $email = $_POST['email'];
