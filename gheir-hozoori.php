@@ -40,8 +40,8 @@ if (mysqli_num_rows($duplicateLandLine) > 0) {
 } else if (mysqli_num_rows($duplicateWhatsapp) > 0) {
     echo json_encode(array("statusCode" => 205));
 } else {
-    $sql = "INSERT INTO `gheir_hozoori`(`user_email`,`shop_name`,`landline`,`phone`,`province`,`city`,`area`,`address`,`job`,`instagram`,`telegram`,`whatsapp`,`description`,`website`,`clue`,`service_type`,`lat`,`lng`) 
-        VALUES ('$email', '$store_name', '$landline', '$phone', '$province', '$city', '$area', '$address', '$job', '$instagram', '$telegram', '$whatsapp', '$description', '$website', '$clue', '$service_type', '$lat', '$lng')";
+    $sql = "INSERT INTO `gheir_hozoori`(`user_email`,`shop_name`,`landline`,`phone`,`province`,`city`,`area`,`address`,`job`,`instagram`,`telegram`,`whatsapp`,`description`,`website`,`clue`,`service_type`,`lat`,`lng`,`import_crm`) 
+        VALUES ('$email', '$store_name', '$landline', '$phone', '$province', '$city', '$area', '$address', '$job', '$instagram', '$telegram', '$whatsapp', '$description', '$website', '$clue', '$service_type', '$lat', '$lng', '0')";
     if (mysqli_query($conn, $sql)) {
         echo json_encode(array("statusCode" => 200));
     } else {
