@@ -274,7 +274,7 @@ $(document).ready(function () {
                 icon: "success",
                 position: "top-left",
               });
-              $('#gheir-hozoori').trigger("reset");
+              $('#reset').click();
             } else if (status.statusCode == 201) {
               $.toast({
                 heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
