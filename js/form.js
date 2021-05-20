@@ -276,7 +276,7 @@ $(document).ready(function () {
               });
               $('#reset').click();
               $(".after-check").fadeOut();
-              $("#submit").fadeOut();
+              $(".hide-submit").fadeOut();
             } else if (status.statusCode == 201) {
               $.toast({
                 heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
@@ -386,7 +386,7 @@ $(document).ready(function () {
           $("#loading").fadeOut();
           if (status.statusCode == 200) {
             $(".after-check").fadeIn();
-            $("#submit").fadeIn();
+            $(".hide-submit").fadeIn();
           } else if (status.statusCode == 201) {
             $.toast({
               heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",

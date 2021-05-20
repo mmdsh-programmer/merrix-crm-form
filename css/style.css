@@ -544,7 +544,7 @@ input.error {
   display: none;
 }
 
-#submit {
+.hide-submit {
   display: none;
 }
 
