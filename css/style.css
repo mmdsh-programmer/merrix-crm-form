@@ -540,6 +540,14 @@ input.error {
   border: 1px solid #ff6801;
 }
 
+.after-check {
+  display: none;
+}
+
+#submit {
+  display: none;
+}
+
 @media screen and (max-width: 992px) {
   .container {
     width: calc(100% - 40px);

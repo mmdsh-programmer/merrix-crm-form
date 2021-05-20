@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let signedInUser = localStorage.getItem("email");
   if (signedInUser == null) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 
   $("#signout").click(() => {
@@ -275,6 +275,8 @@ $(document).ready(function () {
                 position: "top-left",
               });
               $('#reset').click();
+              $(".after-check").fadeOut();
+              $("#submit").fadeOut();
             } else if (status.statusCode == 201) {
               $.toast({
                 heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
@@ -327,6 +329,107 @@ $(document).ready(function () {
           },
         });
       }
+    }
+  });
+
+  $("#check").on("click", function (e) {
+    let landline = $("#landline").val();
+    let phone = $("#phone").val();
+    let instagram = $("#instagram").val();
+    let telegram = $("#telegram").val();
+    let whatsapp = $("#whatsapp").val();
+    let finalInstagram = `https://instagram.com/${instagram}`;
+    let finalTelegram = `https://t.me/${telegram}`;
+    if (landline != "" && !landLineValidation.exec(landline)) {
+      $.toast({
+        heading: "فرمت تلفن ثابت وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else if (phone != "" && !phoneValidation.exec(phone)) {
+      $.toast({
+        heading: "فرمت شماره همراه وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else if (instagram != "" && !instagramValidation.exec(instagram)) {
+      $.toast({
+        heading: "آیدی اینستاگرام وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else if (telegram != "" && !telegramValidation.exec(telegram)) {
+      $.toast({
+        heading: "آیدی تلگرام وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else {
+      $("#loading").fadeIn().css("display", "flex");
+      $.ajax({
+        url: "https://www.merrix.com/addlead/check.php",
+        type: "POST",
+        data: {
+          landline: landline,
+          phone: phone,
+          instagram: instagram == "" ? instagram : finalInstagram,
+          telegram: telegram == "" ? telegram : finalTelegram,
+          whatsapp: whatsapp,
+        },
+        cache: false,
+        success: function (dataResult) {
+          let status = JSON.parse(dataResult);
+          $("#loading").fadeOut();
+          if (status.statusCode == 200) {
+            $(".after-check").fadeIn();
+            $("#submit").fadeIn();
+          } else if (status.statusCode == 201) {
+            $.toast({
+              heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
+              text: "لطفا شماره ثابت دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          } else if (status.statusCode == 202) {
+            $.toast({
+              heading: "شماره تلفن همراه وارد شده قبلا ثبت شده است!",
+              text: "لطفا شماره همراه دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          } else if (status.statusCode == 203) {
+            $.toast({
+              heading: "آدرس اینستاگرام وارد شده قبلا ثبت شده است!",
+              text: "لطفا آدرس اینستاگرام دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          } else if (status.statusCode == 204) {
+            $.toast({
+              heading: "آدرس تلگرام وارد شده قبلا ثبت شده است!",
+              text: "لطفا آدرس تلگرام دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          } else if (status.statusCode == 205) {
+            $.toast({
+              heading: "آدرس واتس اپ وارد شده قبلا ثبت شده است!",
+              text: "لطفا آدرس واتس اپ دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          }
+        },
+      });
     }
   });
 });
