@@ -340,7 +340,14 @@ $(document).ready(function () {
     let whatsapp = $("#whatsapp").val();
     let finalInstagram = `https://instagram.com/${instagram}`;
     let finalTelegram = `https://t.me/${telegram}`;
-    if (landline != "" && !landLineValidation.exec(landline)) {
+    if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
+      $.toast({
+        heading: "لطفا حداقل یک شبکه اجتماعی یا شماره تلفن وارد کنید",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else if (landline != "" && !landLineValidation.exec(landline)) {
       $.toast({
         heading: "فرمت تلفن ثابت وارد شده صحیح نیست",
         showHideTransition: "slide",
