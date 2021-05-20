@@ -13,6 +13,12 @@ $(document).ready(function () {
   let phoneValidation = new RegExp('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}');
   let instagramValidation = new RegExp('^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$');
   let telegramValidation = new RegExp('^[a-z0-9_-]{3,16}$');
+  let websiteValidation = new RegExp('^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 
   //map
   let app = new Mapp({
@@ -121,10 +127,6 @@ $(document).ready(function () {
       job: {
         required: true,
       },
-      website: {
-        required: false,
-        url: true
-      },
       clue: {
         required: true,
       },
@@ -161,9 +163,6 @@ $(document).ready(function () {
       job: {
         required: "پر کردن این فیلد اجباری است",
       },
-      website: {
-        url: "لینک وارد شده صحیح نیست"
-      },
       clue: {
         required: "پر کردن این فیلد اجباری است",
       },
@@ -196,6 +195,7 @@ $(document).ready(function () {
       let finalStoreName = `${job} ${store_name}`;
       let finalInstagram = `https://instagram.com/${instagram}`;
       let finalTelegram = `https://t.me/${telegram}`;
+      let finalWebsite = `http://www.${website}`;
       if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
         $.toast({
           heading: "لطفا حداقل یک لینک شبکه اجتماعی یا شماره تلفن وارد کنید",
@@ -238,6 +238,13 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
+      } else if (website != "" && !websiteValidation.exec(finalWebsite)) {
+        $.toast({
+          heading: "فرمت آدرس وبسایت صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
       } else {
         $("#loading").fadeIn().css("display", "flex");
         $.ajax({
@@ -257,7 +264,7 @@ $(document).ready(function () {
             telegram: telegram == "" ? telegram : finalTelegram,
             whatsapp: whatsapp,
             description: description,
-            website: website,
+            website: website == "" ? website : finalWebsite,
             clue: clue,
             service_type: service_type,
             lat: service_type == "حضوری" ? finalLocation.lat : "",
@@ -277,6 +284,7 @@ $(document).ready(function () {
               $('#reset').click();
               $(".after-check").fadeOut();
               $(".hide-submit").fadeOut();
+              $("#check").fadeIn();
             } else if (status.statusCode == 201) {
               $.toast({
                 heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
@@ -317,6 +325,14 @@ $(document).ready(function () {
                 icon: "error",
                 position: "top-left",
               });
+            } else if (status.statusCode == 206) {
+              $.toast({
+                heading: "آدرس وبسایت وارد شده قبلا ثبت شده است!",
+                text: "لطفا آدرس وبسایت دیگری را وارد کنید",
+                showHideTransition: "slide",
+                icon: "error",
+                position: "top-left",
+              });
             } else if (status.statusCode == 400) {
               $.toast({
                 heading: "مشکلی در ذخیره اطلاعات به وجود آمد!",
@@ -338,8 +354,10 @@ $(document).ready(function () {
     let instagram = $("#instagram").val();
     let telegram = $("#telegram").val();
     let whatsapp = $("#whatsapp").val();
+    let website = $("#website").val();
     let finalInstagram = `https://instagram.com/${instagram}`;
     let finalTelegram = `https://t.me/${telegram}`;
+    let finalWebsite = `http://www.${website}`;
     if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
       $.toast({
         heading: "لطفا حداقل یک شبکه اجتماعی یا شماره تلفن وارد کنید",
@@ -375,6 +393,13 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
+    } else if (website != "" && !websiteValidation.exec(finalWebsite)) {
+      $.toast({
+        heading: "فرمت آدرس وبسایت صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
     } else {
       $("#loading").fadeIn().css("display", "flex");
       $.ajax({
@@ -386,6 +411,7 @@ $(document).ready(function () {
           instagram: instagram == "" ? instagram : finalInstagram,
           telegram: telegram == "" ? telegram : finalTelegram,
           whatsapp: whatsapp,
+          website: website == "" ? website : finalWebsite,
         },
         cache: false,
         success: function (dataResult) {
@@ -393,7 +419,8 @@ $(document).ready(function () {
           $("#loading").fadeOut();
           if (status.statusCode == 200) {
             $(".after-check").fadeIn();
-            $(".hide-submit").fadeIn();
+            $("#check").fadeOut();
+            $(".hide-submit").fadeIn().css("display", "inline");
           } else if (status.statusCode == 201) {
             $.toast({
               heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
@@ -430,6 +457,14 @@ $(document).ready(function () {
             $.toast({
               heading: "آدرس واتس اپ وارد شده قبلا ثبت شده است!",
               text: "لطفا آدرس واتس اپ دیگری را وارد کنید",
+              showHideTransition: "slide",
+              icon: "error",
+              position: "top-left",
+            });
+          } else if (status.statusCode == 206) {
+            $.toast({
+              heading: "آدرس وبسایت وارد شده قبلا ثبت شده است!",
+              text: "لطفا آدرس وبسایت دیگری را وارد کنید",
               showHideTransition: "slide",
               icon: "error",
               position: "top-left",

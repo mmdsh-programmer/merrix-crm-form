@@ -11,11 +11,13 @@ $phone = $_POST['phone'];
 $instagram = $_POST['instagram'];
 $telegram = $_POST['telegram'];
 $whatsapp = $_POST['whatsapp'];
+$website = $_POST['website'];
 $duplicateLandLine = mysqli_query($conn, "select * from gheir_hozoori where landline='$landline' and landline<>''");
 $duplicatePhone = mysqli_query($conn, "select * from gheir_hozoori where phone='$phone' and phone<>''");
 $duplicateInstagram = mysqli_query($conn, "select * from gheir_hozoori where instagram='$instagram' and instagram<>''");
 $duplicateTelegram = mysqli_query($conn, "select * from gheir_hozoori where telegram='$telegram' and telegram<>''");
 $duplicateWhatsapp = mysqli_query($conn, "select * from gheir_hozoori where whatsapp='$whatsapp' and whatsapp<>''");
+$duplicateWebsite = mysqli_query($conn, "select * from gheir_hozoori where website='$website' and website<>''");
 if (mysqli_num_rows($duplicateLandLine) > 0) {
     echo json_encode(array("statusCode" => 201));
 } else if (mysqli_num_rows($duplicatePhone) > 0) {
@@ -26,6 +28,8 @@ if (mysqli_num_rows($duplicateLandLine) > 0) {
     echo json_encode(array("statusCode" => 204));
 } else if (mysqli_num_rows($duplicateWhatsapp) > 0) {
     echo json_encode(array("statusCode" => 205));
+} else if (mysqli_num_rows($duplicateWebsite) > 0) {
+    echo json_encode(array("statusCode" => 206));
 } else {
     echo json_encode(array("statusCode" => 200));
 }
