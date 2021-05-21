@@ -9,19 +9,15 @@ $(document).ready(function () {
     window.location.href = "index.html";
   });
 
-  let landLineValidation = new RegExp('^0[0-9]{2,}[0-9]{7,}$');
-  let phoneValidation = new RegExp('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}');
-  let instagramValidation = new RegExp('^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$');
-  let telegramValidation = new RegExp('^[a-z0-9_-]{3,16}$');
-  function websiteValidation(url) {
-    try {
-      new URL(url);
-    } catch (e) {
-      console.error(e);
-      return false;
-    }
-    return true;
-  };
+  let landLineValidation = new RegExp("^0[0-9]{2,}[0-9]{7,}$");
+  let phoneValidation = new RegExp(
+    "09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}"
+  );
+  let instagramValidation = new RegExp(
+    "^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$"
+  );
+  let telegramValidation = new RegExp("^[a-z0-9_-]{3,16}$");
+  let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
 
   //map
   let app = new Mapp({
@@ -155,7 +151,7 @@ $(document).ready(function () {
         maxlength: "حداکثر طول 11 رقم میباشد",
       },
       province: {
-        required: "پر کردن این فیلد اجباری است"
+        required: "پر کردن این فیلد اجباری است",
       },
       city: {
         required: "پر کردن این فیلد اجباری است",
@@ -173,7 +169,9 @@ $(document).ready(function () {
   });
 
   $("#service-type").change(() => {
-    $("#service-type").val() == "حضوری" ? $(".map-holder").fadeIn() : $(".map-holder").fadeOut();
+    $("#service-type").val() == "حضوری"
+      ? $(".map-holder").fadeIn()
+      : $(".map-holder").fadeOut();
   });
 
   $("#gheir-hozoori").on("submit", function (e) {
@@ -199,7 +197,13 @@ $(document).ready(function () {
       let finalInstagram = `https://instagram.com/${instagram}`;
       let finalTelegram = `https://t.me/${telegram}`;
       let finalWebsite = `http://www.${website}`;
-      if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
+      if (
+        landline == "" &&
+        phone == "" &&
+        instagram == "" &&
+        telegram == "" &&
+        whatsapp == ""
+      ) {
         $.toast({
           heading: "لطفا حداقل یک لینک شبکه اجتماعی یا شماره تلفن وارد کنید",
           showHideTransition: "slide",
@@ -241,8 +245,8 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && websiteValidation(finalWebsite) == false) {
-        console.table(website)
+      } else if (website != "" && websiteValidation.test(finalWebsite) == false) {
+        console.log(websiteValidation.test(finalWebsite));
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -272,7 +276,7 @@ $(document).ready(function () {
             clue: clue,
             service_type: service_type,
             lat: service_type == "حضوری" ? finalLocation.lat : "",
-            lng: service_type == "حضوری" ? finalLocation.lng : ""
+            lng: service_type == "حضوری" ? finalLocation.lng : "",
           },
           cache: false,
           success: function (dataResult) {
@@ -285,7 +289,7 @@ $(document).ready(function () {
                 icon: "success",
                 position: "top-left",
               });
-              $('#reset').click();
+              $("#reset").click();
               $(".after-check").fadeOut();
               $(".hide-submit").fadeOut();
               $("#check").fadeIn();
@@ -362,7 +366,13 @@ $(document).ready(function () {
     let finalInstagram = `https://instagram.com/${instagram}`;
     let finalTelegram = `https://t.me/${telegram}`;
     let finalWebsite = `http://www.${website}`;
-    if (landline == "" && phone == "" && instagram == "" && telegram == "" && whatsapp == "") {
+    if (
+      landline == "" &&
+      phone == "" &&
+      instagram == "" &&
+      telegram == "" &&
+      whatsapp == ""
+    ) {
       $.toast({
         heading: "لطفا حداقل یک شبکه اجتماعی یا شماره تلفن وارد کنید",
         showHideTransition: "slide",
@@ -397,8 +407,8 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && websiteValidation(finalWebsite) == false) {
-      console.table(website)
+    } else if (website != "" && websiteValidation.test(finalWebsite) == false) {
+      console.log(websiteValidation.test(finalWebsite));
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
