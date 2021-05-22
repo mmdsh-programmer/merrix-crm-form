@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let signedInUser = localStorage.getItem("email");
   if (signedInUser == null) {
-    //window.location.href = "index.html";
+    window.location.href = "index.html";
   }
 
   $("#signout").click(() => {
@@ -82,11 +82,6 @@ $(document).ready(function () {
   app.map.on("zoom", function (e) {
     finalLocation = { ...crosshairMarker.getLatLng() };
     console.log(finalLocation);
-  });
-
-  $("#signout").click(() => {
-    localStorage.clear();
-    window.location.href = "index.html";
   });
   //map
 
