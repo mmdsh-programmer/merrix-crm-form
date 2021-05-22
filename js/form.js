@@ -172,7 +172,6 @@ $(document).ready(function () {
           position: "top-left",
         });
       } else if (instagram != "" && !instagramValidation.exec(instagram)) {
-        console.log(!instagramValidation.exec(instagram));
         $.toast({
           heading: "آیدی اینستاگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
@@ -187,7 +186,6 @@ $(document).ready(function () {
           position: "top-left",
         });
       } else if (website != "" && !websiteValidation.exec(website)) {
-        console.log(!websiteValidation.exec(website));
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -335,7 +333,6 @@ $(document).ready(function () {
         position: "top-left",
       });
     } else if (instagram != "" && !instagramValidation.exec(instagram)) {
-      console.log(!instagramValidation.exec(instagram));
       $.toast({
         heading: "آیدی اینستاگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
@@ -350,7 +347,6 @@ $(document).ready(function () {
         position: "top-left",
       });
     } else if (website != "" && !websiteValidation.exec(website)) {
-      console.log(!websiteValidation.exec(website));
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
