@@ -245,7 +245,7 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && websiteValidation.test(finalWebsite) == false) {
+      } else if (website != "" && !websiteValidation.test(finalWebsite)) {
         console.log(websiteValidation.test(finalWebsite));
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
@@ -407,7 +407,7 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && websiteValidation.test(finalWebsite) == false) {
+    } else if (website != "" && !websiteValidation.test(finalWebsite)) {
       console.log(websiteValidation.test(finalWebsite));
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
