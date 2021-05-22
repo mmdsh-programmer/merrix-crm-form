@@ -20,70 +20,14 @@ $(document).ready(function () {
   let websiteValidation = new RegExp("^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$");
   //let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
 
-  //map
-  let app = new Mapp({
-    element: "#app",
-    presets: {
-      latlng: {
-        lat: 35.73249,
-        lng: 51.42268,
-      },
-      zoom: 10,
-    },
-    i18n: {
-      fa: {
-        "mapp-tooltip-zoom-in": "افزایش بزرگنمایی",
-        "mapp-tooltip-zoom-out": "کاهش بزرگنمایی",
-        "mapp-tooltip-geolocation": "مکان کنونی",
-        "mapp-tooltip-fullscreen": "نقشه تمام صفحه",
-      },
-    },
-    apiKey:
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdmYTRjZWVkYzZiMWQ1NWI3NDAwNjc1YWI1NDlkNGU1OWNmYjZiNTQyN2U1ZjBlMWU4YjA2YjA0ZTFjMTBlOGI2ZGIxM2FlMTYzOGRkNDc0In0.eyJhdWQiOiIxMzAwOCIsImp0aSI6IjdmYTRjZWVkYzZiMWQ1NWI3NDAwNjc1YWI1NDlkNGU1OWNmYjZiNTQyN2U1ZjBlMWU4YjA2YjA0ZTFjMTBlOGI2ZGIxM2FlMTYzOGRkNDc0IiwiaWF0IjoxNjE0ODQwMDY1LCJuYmYiOjE2MTQ4NDAwNjUsImV4cCI6MTYxNzI1NTY2NSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.nsemTpE0Kuqp8XyIpOxZMT5_EpXl2t7MMIZlj-ZAesN_LhbV2kjxiYoL5xkRD3DatWtKfTt6YaFaEMPh6Ch6AdwjHgTPRbHzYKbLHHXKtuKFI2_ZIWX1nzQpcdmUr0FaB_ldll0fGhPBYn6qgYKFVdLap9P_vuzLL1kDqQvK8AXp1DJW3tTWNnNHH0Mqi7nN9miGimO4VF6LxQpaFjbRy2hxnjzbEvg1zJPDDdlmrO3cjWhNrNz8yYz1WO5o-NxVwDQi--HecwOaD2eCYdSe2-0L_nMQI1kMv1ImNc8kSizl_BflmwLxIM3_bhgmqcYFGUHOj0c9v2554_IVX_WcTQ",
-  });
+  //map initialize variables
   let finalLocation = { lat: "", lng: "" };
   var crosshairIcon = L.icon({
     iconUrl: "images/marker.ico",
     iconSize: [40, 40],
     iconAnchor: [10, 10],
   });
-  crosshairMarker = new L.marker(app.map.getCenter(), {
-    icon: crosshairIcon,
-    clickable: false,
-  });
-  crosshairMarker.addTo(app.map);
-  app.addVectorLayers();
-  app.addZoomControls();
-  app.addGeolocation({
-    callback: function () {
-      app.removeMarkers({
-        group: app.groups.features.markers,
-      });
-    },
-  });
-  app.addFullscreen();
-  app.getUserLocation({
-    success: function () {
-      app.removeMarkers({
-        group: app.groups.features.markers,
-      });
-      finalLocation = { ...app.states.user.latlng };
-      console.log(finalLocation);
-    },
-  });
-
-  app.map.on("move", function (e) {
-    crosshairMarker.setLatLng(app.map.getCenter());
-  });
-  app.map.on("dragend", function (e) {
-    finalLocation = { ...crosshairMarker.getLatLng() };
-    console.log(finalLocation);
-  });
-  app.map.on("zoom", function (e) {
-    finalLocation = { ...crosshairMarker.getLatLng() };
-    console.log(finalLocation);
-  });
-  //map
+  //map initialize variables
 
   $("#gheir-hozoori").validate({
     rules: {
@@ -434,6 +378,64 @@ $(document).ready(function () {
             $(".after-check").fadeIn();
             $("#check").fadeOut();
             $(".hide-submit").fadeIn().css("display", "inline");
+            //map
+            let app = new Mapp({
+              element: "#app",
+              presets: {
+                latlng: {
+                  lat: 35.73249,
+                  lng: 51.42268,
+                },
+                zoom: 10,
+              },
+              i18n: {
+                fa: {
+                  "mapp-tooltip-zoom-in": "افزایش بزرگنمایی",
+                  "mapp-tooltip-zoom-out": "کاهش بزرگنمایی",
+                  "mapp-tooltip-geolocation": "مکان کنونی",
+                  "mapp-tooltip-fullscreen": "نقشه تمام صفحه",
+                },
+              },
+              apiKey:
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdmYTRjZWVkYzZiMWQ1NWI3NDAwNjc1YWI1NDlkNGU1OWNmYjZiNTQyN2U1ZjBlMWU4YjA2YjA0ZTFjMTBlOGI2ZGIxM2FlMTYzOGRkNDc0In0.eyJhdWQiOiIxMzAwOCIsImp0aSI6IjdmYTRjZWVkYzZiMWQ1NWI3NDAwNjc1YWI1NDlkNGU1OWNmYjZiNTQyN2U1ZjBlMWU4YjA2YjA0ZTFjMTBlOGI2ZGIxM2FlMTYzOGRkNDc0IiwiaWF0IjoxNjE0ODQwMDY1LCJuYmYiOjE2MTQ4NDAwNjUsImV4cCI6MTYxNzI1NTY2NSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.nsemTpE0Kuqp8XyIpOxZMT5_EpXl2t7MMIZlj-ZAesN_LhbV2kjxiYoL5xkRD3DatWtKfTt6YaFaEMPh6Ch6AdwjHgTPRbHzYKbLHHXKtuKFI2_ZIWX1nzQpcdmUr0FaB_ldll0fGhPBYn6qgYKFVdLap9P_vuzLL1kDqQvK8AXp1DJW3tTWNnNHH0Mqi7nN9miGimO4VF6LxQpaFjbRy2hxnjzbEvg1zJPDDdlmrO3cjWhNrNz8yYz1WO5o-NxVwDQi--HecwOaD2eCYdSe2-0L_nMQI1kMv1ImNc8kSizl_BflmwLxIM3_bhgmqcYFGUHOj0c9v2554_IVX_WcTQ",
+            });
+            crosshairMarker = new L.marker(app.map.getCenter(), {
+              icon: crosshairIcon,
+              clickable: false,
+            });
+            crosshairMarker.addTo(app.map);
+            app.addVectorLayers();
+            app.addZoomControls();
+            app.addGeolocation({
+              callback: function () {
+                app.removeMarkers({
+                  group: app.groups.features.markers,
+                });
+              },
+            });
+            app.addFullscreen();
+            app.getUserLocation({
+              success: function () {
+                app.removeMarkers({
+                  group: app.groups.features.markers,
+                });
+                finalLocation = { ...app.states.user.latlng };
+                console.log(finalLocation);
+              },
+            });
+
+            app.map.on("move", function (e) {
+              crosshairMarker.setLatLng(app.map.getCenter());
+            });
+            app.map.on("dragend", function (e) {
+              finalLocation = { ...crosshairMarker.getLatLng() };
+              console.log(finalLocation);
+            });
+            app.map.on("zoom", function (e) {
+              finalLocation = { ...crosshairMarker.getLatLng() };
+              console.log(finalLocation);
+            });
+            //map
           } else if (status.statusCode == 201) {
             $.toast({
               heading: "شماره تلفن ثابت وارد شده قبلا ثبت شده است!",
