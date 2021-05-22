@@ -17,7 +17,8 @@ $(document).ready(function () {
     "^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$"
   );
   let telegramValidation = new RegExp("^[a-z0-9_-]{3,16}$");
-  let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
+  let websiteValidation = new RegExp("^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$");
+  //let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
 
   //map
   let app = new Mapp({
@@ -232,6 +233,7 @@ $(document).ready(function () {
           position: "top-left",
         });
       } else if (instagram != "" && !instagramValidation.exec(instagram)) {
+        console.log(!instagramValidation.exec(instagram));
         $.toast({
           heading: "آیدی اینستاگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
@@ -245,8 +247,8 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && !websiteValidation.test(finalWebsite)) {
-        console.log(websiteValidation.test(finalWebsite));
+      } else if (website != "" && !websiteValidation.exec(website)) {
+        console.log(!websiteValidation.exec(website));
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -394,6 +396,7 @@ $(document).ready(function () {
         position: "top-left",
       });
     } else if (instagram != "" && !instagramValidation.exec(instagram)) {
+      console.log(!instagramValidation.exec(instagram));
       $.toast({
         heading: "آیدی اینستاگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
@@ -407,8 +410,8 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && !websiteValidation.test(finalWebsite)) {
-      console.log(websiteValidation.test(finalWebsite));
+    } else if (website != "" && !websiteValidation.exec(website)) {
+      console.log(!websiteValidation.exec(website));
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
