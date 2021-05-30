@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');  
 $servername = "localhost";
 $username = "merrixc2_addlead";
-$password = "BwoF5JIczo";
+$password = "Zfsdk3w1O";
 $db = "merrixc2_addlead";
 $conn = mysqli_connect($servername, $username, $password, $db);
 if ($_POST['type'] == 1) {

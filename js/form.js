@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let signedInUser = localStorage.getItem("email");
   if (signedInUser == null) {
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 
   $("#signout").click(() => {
