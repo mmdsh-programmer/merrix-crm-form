@@ -18,6 +18,7 @@ $(document).ready(function () {
   );
   let telegramValidation = new RegExp("^[a-z0-9_-]{3,16}$");
   let websiteValidation = new RegExp("^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$");
+  let urlValidate = new RegExp("^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$")
   //let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
 
   //map initialize variables
@@ -171,21 +172,21 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (instagram != "" && !instagramValidation.exec(instagram)) {
+      } else if (instagram != "" && !urlValidate.exec(instagram)) {
         $.toast({
           heading: "آیدی اینستاگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
           icon: "error",
           position: "top-left",
         });
-      } else if (telegram != "" && !telegramValidation.exec(telegram)) {
+      } else if (telegram != "" && !urlValidate.exec(telegram)) {
         $.toast({
           heading: "آیدی تلگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && !websiteValidation.exec(website)) {
+      } else if (website != "" && !urlValidate.exec(website)) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -332,21 +333,21 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (instagram != "" && !instagramValidation.exec(instagram)) {
+    } else if (instagram != "" && !urlValidate.exec(instagram)) {
       $.toast({
         heading: "آیدی اینستاگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
         icon: "error",
         position: "top-left",
       });
-    } else if (telegram != "" && !telegramValidation.exec(telegram)) {
+    } else if (telegram != "" && !urlValidate.exec(telegram)) {
       $.toast({
         heading: "آیدی تلگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && !websiteValidation.exec(website)) {
+    } else if (website != "" && !urlValidate.exec(website)) {
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
