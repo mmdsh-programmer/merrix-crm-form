@@ -1,9 +1,9 @@
 <?php
 header('Access-Control-Allow-Origin: *');  
 $servername = "localhost";
-$username = "merrixc2_addlead";
-$password = "Zfsdk3w1O";
-$db = "merrixc2_addlead";
+$username = "naqabel1_addlead";
+$password = "zHl1IUdhkt";
+$db = "naqabel1_addlead";
 $conn = mysqli_connect($servername, $username, $password, $db);
 if ($_POST['type'] == 1) {
 	$email = $_POST['email'];

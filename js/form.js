@@ -48,12 +48,12 @@ $(document).ready(function () {
         minlength: 11,
         maxlength: 11,
       },
-      whatsapp: {
+      /*whatsapp: {
         required: false,
         digits: true,
         minlength: 11,
         maxlength: 11,
-      },
+      },*/
       province: {
         required: true,
       },
@@ -86,11 +86,11 @@ $(document).ready(function () {
         minlength: "حداقل طول 11 رقم میباشد",
         maxlength: "حداکثر طول 11 رقم میباشد",
       },
-      whatsapp: {
+      /*whatsapp: {
         digits: "فقط عدد مجاز است",
         minlength: "حداقل طول 11 رقم میباشد",
         maxlength: "حداکثر طول 11 رقم میباشد",
-      },
+      },*/
       province: {
         required: "پر کردن این فیلد اجباری است",
       },
@@ -129,21 +129,20 @@ $(document).ready(function () {
       let job = $("#job").val();
       let instagram = $("#instagram").val();
       let telegram = $("#telegram").val();
-      let whatsapp = $("#whatsapp").val();
+      //let whatsapp = $("#whatsapp").val();
       let description = $("#description").val();
       let website = $("#website").val();
       let clue = $("#clue").val();
       let service_type = $("#service-type").val();
       let finalStoreName = `${job} ${store_name}`;
-      let finalInstagram = `https://instagram.com/${instagram}`;
-      let finalTelegram = `https://t.me/${telegram}`;
-      let finalWebsite = `http://www.${website}`;
+      //let finalInstagram = `https://instagram.com/${instagram}`;
+      //let finalTelegram = `https://t.me/${telegram}`;
+      //let finalWebsite = `http://www.${website}`;
       if (
         landline == "" &&
         phone == "" &&
         instagram == "" &&
-        telegram == "" &&
-        whatsapp == ""
+        telegram == ""
       ) {
         $.toast({
           heading: "لطفا حداقل یک لینک شبکه اجتماعی یا شماره تلفن وارد کنید",
@@ -208,11 +207,11 @@ $(document).ready(function () {
             address: address,
             area: area,
             job: job,
-            instagram: instagram == "" ? instagram : finalInstagram,
-            telegram: telegram == "" ? telegram : finalTelegram,
-            whatsapp: whatsapp,
+            instagram: instagram,
+            telegram: telegram,
+            //whatsapp: whatsapp,
             description: description,
-            website: website == "" ? website : finalWebsite,
+            website: website,
             clue: clue,
             service_type: service_type,
             lat: service_type == "حضوری" ? finalLocation.lat : "",
@@ -265,14 +264,6 @@ $(document).ready(function () {
                 icon: "error",
                 position: "top-left",
               });
-            } else if (status.statusCode == 205) {
-              $.toast({
-                heading: "آدرس واتس اپ وارد شده قبلا ثبت شده است!",
-                text: "لطفا آدرس واتس اپ دیگری را وارد کنید",
-                showHideTransition: "slide",
-                icon: "error",
-                position: "top-left",
-              });
             } else if (status.statusCode == 206) {
               $.toast({
                 heading: "آدرس وبسایت وارد شده قبلا ثبت شده است!",
@@ -301,17 +292,16 @@ $(document).ready(function () {
     let phone = $("#phone").val();
     let instagram = $("#instagram").val();
     let telegram = $("#telegram").val();
-    let whatsapp = $("#whatsapp").val();
+    //let whatsapp = $("#whatsapp").val();
     let website = $("#website").val();
-    let finalInstagram = `https://instagram.com/${instagram}`;
-    let finalTelegram = `https://t.me/${telegram}`;
-    let finalWebsite = `http://www.${website}`;
+    //let finalInstagram = `https://instagram.com/${instagram}`;
+    //let finalTelegram = `https://t.me/${telegram}`;
+    //let finalWebsite = `http://www.${website}`;
     if (
       landline == "" &&
       phone == "" &&
       instagram == "" &&
-      telegram == "" &&
-      whatsapp == ""
+      telegram == ""
     ) {
       $.toast({
         heading: "لطفا حداقل یک شبکه اجتماعی یا شماره تلفن وارد کنید",
@@ -362,10 +352,10 @@ $(document).ready(function () {
         data: {
           landline: landline,
           phone: phone,
-          instagram: instagram == "" ? instagram : finalInstagram,
-          telegram: telegram == "" ? telegram : finalTelegram,
-          whatsapp: whatsapp,
-          website: website == "" ? website : finalWebsite,
+          instagram: instagram,
+          telegram: telegram,
+          //whatsapp: whatsapp,
+          website: website,
         },
         cache: false,
         success: function (dataResult) {
@@ -461,14 +451,6 @@ $(document).ready(function () {
             $.toast({
               heading: "آدرس تلگرام وارد شده قبلا ثبت شده است!",
               text: "لطفا آدرس تلگرام دیگری را وارد کنید",
-              showHideTransition: "slide",
-              icon: "error",
-              position: "top-left",
-            });
-          } else if (status.statusCode == 205) {
-            $.toast({
-              heading: "آدرس واتس اپ وارد شده قبلا ثبت شده است!",
-              text: "لطفا آدرس واتس اپ دیگری را وارد کنید",
               showHideTransition: "slide",
               icon: "error",
               position: "top-left",
