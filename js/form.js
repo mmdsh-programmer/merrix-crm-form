@@ -137,7 +137,7 @@ $(document).ready(function () {
       let finalStoreName = `${job} ${store_name}`;
       //let finalInstagram = `https://instagram.com/${instagram}`;
       //let finalTelegram = `https://t.me/${telegram}`;
-      //let finalWebsite = `http://www.${website}`;
+      let finalWebsite = `http://www.${website}`;
       if (
         landline == "" &&
         phone == "" &&
@@ -185,7 +185,7 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && !urlValidate.exec(website)) {
+      } else if (website != "" && !urlValidate.exec(finalWebsite)) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -211,7 +211,7 @@ $(document).ready(function () {
             telegram: telegram,
             //whatsapp: whatsapp,
             description: description,
-            website: website,
+            website: website == "" ? website : finalWebsite,
             clue: clue,
             service_type: service_type,
             lat: service_type == "حضوری" ? finalLocation.lat : "",
@@ -296,7 +296,7 @@ $(document).ready(function () {
     let website = $("#website").val();
     //let finalInstagram = `https://instagram.com/${instagram}`;
     //let finalTelegram = `https://t.me/${telegram}`;
-    //let finalWebsite = `http://www.${website}`;
+    let finalWebsite = `http://www.${website}`;
     if (
       landline == "" &&
       phone == "" &&
@@ -337,7 +337,7 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && !urlValidate.exec(website)) {
+    } else if (website != "" && !urlValidate.exec(finalWebsite)) {
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
@@ -355,7 +355,7 @@ $(document).ready(function () {
           instagram: instagram,
           telegram: telegram,
           //whatsapp: whatsapp,
-          website: website,
+          website: website == "" ? website : finalWebsite,
         },
         cache: false,
         success: function (dataResult) {
