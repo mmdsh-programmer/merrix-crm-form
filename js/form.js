@@ -48,6 +48,10 @@ $(document).ready(function () {
         minlength: 11,
         maxlength: 11,
       },
+      instagram: {
+        required: false,
+        url: true
+      },
       /*whatsapp: {
         required: false,
         digits: true,
@@ -85,6 +89,9 @@ $(document).ready(function () {
         digits: "فقط عدد مجاز است",
         minlength: "حداقل طول 11 رقم میباشد",
         maxlength: "حداکثر طول 11 رقم میباشد",
+      },
+      instagram: {
+        url: "آیدی اینستاگرام صحیح نمیباشد"
       },
       /*whatsapp: {
         digits: "فقط عدد مجاز است",
@@ -137,7 +144,7 @@ $(document).ready(function () {
       let finalStoreName = `${job} ${store_name}`;
       //let finalInstagram = `https://instagram.com/${instagram}`;
       //let finalTelegram = `https://t.me/${telegram}`;
-      let finalWebsite = `http://www.${website}`;
+      let finalWebsite = `http://${website}`;
       if (
         landline == "" &&
         phone == "" &&
@@ -167,13 +174,6 @@ $(document).ready(function () {
       } else if (phone != "" && !phoneValidation.exec(phone)) {
         $.toast({
           heading: "فرمت شماره همراه وارد شده صحیح نیست",
-          showHideTransition: "slide",
-          icon: "error",
-          position: "top-left",
-        });
-      } else if (instagram != "" && !urlValidate.exec(instagram)) {
-        $.toast({
-          heading: "آیدی اینستاگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
           icon: "error",
           position: "top-left",
@@ -296,7 +296,7 @@ $(document).ready(function () {
     let website = $("#website").val();
     //let finalInstagram = `https://instagram.com/${instagram}`;
     //let finalTelegram = `https://t.me/${telegram}`;
-    let finalWebsite = `http://www.${website}`;
+    let finalWebsite = `http://${website}`;
     if (
       landline == "" &&
       phone == "" &&
@@ -319,13 +319,6 @@ $(document).ready(function () {
     } else if (phone != "" && !phoneValidation.exec(phone)) {
       $.toast({
         heading: "فرمت شماره همراه وارد شده صحیح نیست",
-        showHideTransition: "slide",
-        icon: "error",
-        position: "top-left",
-      });
-    } else if (instagram != "" && !urlValidate.exec(instagram)) {
-      $.toast({
-        heading: "آیدی اینستاگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
         icon: "error",
         position: "top-left",
