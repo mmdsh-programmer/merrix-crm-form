@@ -9,9 +9,17 @@ $(document).ready(function () {
     window.location.href = "index.html";
   });
 
+  //prevent enter submiting
+  $(window).keydown(function (event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
   let landLineValidation = new RegExp("^0[0-9]{2,}[0-9]{7,}$");
   let phoneValidation = new RegExp(
-    "09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}"
+    "(\+98|0)?9\d{9}"
   );
   let instagramValidation = new RegExp(
     "^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$"
@@ -178,13 +186,6 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (phone != "" && !phoneValidation.exec(phone)) {
-        $.toast({
-          heading: "فرمت شماره همراه وارد شده صحیح نیست",
-          showHideTransition: "slide",
-          icon: "error",
-          position: "top-left",
-        });
       } else if (website != "" && !urlValidate.exec(finalWebsite)) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
@@ -312,13 +313,6 @@ $(document).ready(function () {
     } else if (landline != "" && !landLineValidation.exec(landline)) {
       $.toast({
         heading: "فرمت تلفن ثابت وارد شده صحیح نیست",
-        showHideTransition: "slide",
-        icon: "error",
-        position: "top-left",
-      });
-    } else if (phone != "" && !phoneValidation.exec(phone)) {
-      $.toast({
-        heading: "فرمت شماره همراه وارد شده صحیح نیست",
         showHideTransition: "slide",
         icon: "error",
         position: "top-left",
