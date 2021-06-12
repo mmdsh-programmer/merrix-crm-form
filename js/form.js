@@ -52,6 +52,10 @@ $(document).ready(function () {
         required: false,
         url: true
       },
+      telegram: {
+        required: false,
+        url: true
+      },
       /*whatsapp: {
         required: false,
         digits: true,
@@ -92,6 +96,9 @@ $(document).ready(function () {
       },
       instagram: {
         url: "آیدی اینستاگرام صحیح نمیباشد"
+      },
+      telegram: {
+        url: "آیدی تلگرام صحیح نمیباشد"
       },
       /*whatsapp: {
         digits: "فقط عدد مجاز است",
@@ -174,13 +181,6 @@ $(document).ready(function () {
       } else if (phone != "" && !phoneValidation.exec(phone)) {
         $.toast({
           heading: "فرمت شماره همراه وارد شده صحیح نیست",
-          showHideTransition: "slide",
-          icon: "error",
-          position: "top-left",
-        });
-      } else if (telegram != "" && !urlValidate.exec(telegram)) {
-        $.toast({
-          heading: "آیدی تلگرام وارد شده صحیح نیست",
           showHideTransition: "slide",
           icon: "error",
           position: "top-left",
@@ -319,13 +319,6 @@ $(document).ready(function () {
     } else if (phone != "" && !phoneValidation.exec(phone)) {
       $.toast({
         heading: "فرمت شماره همراه وارد شده صحیح نیست",
-        showHideTransition: "slide",
-        icon: "error",
-        position: "top-left",
-      });
-    } else if (telegram != "" && !urlValidate.exec(telegram)) {
-      $.toast({
-        heading: "آیدی تلگرام وارد شده صحیح نیست",
         showHideTransition: "slide",
         icon: "error",
         position: "top-left",
