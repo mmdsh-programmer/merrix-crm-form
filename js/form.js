@@ -19,7 +19,7 @@ $(document).ready(function () {
 
   let landLineValidation = new RegExp("^0[0-9]{2,}[0-9]{7,}$");
   let phoneValidation = new RegExp(
-    "(\+98|0)?9\d{9}"
+    "^(0)?9\d{9}$"
   );
   let instagramValidation = new RegExp(
     "^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$"
