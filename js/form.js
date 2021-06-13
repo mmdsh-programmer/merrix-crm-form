@@ -17,6 +17,17 @@ $(document).ready(function () {
     }
   });
 
+  //count new leads
+  let count = 0;
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  let leadDetails = { "date": today, "count": count };
+  localStorage.setItem("history", localStorage.getItem(history));
+
   let landLineValidation = new RegExp("^0[0-9]{2,}[0-9]{7,}$");
   let phoneValidation = new RegExp(
     "^(0)?9\d{9}$"
@@ -28,6 +39,27 @@ $(document).ready(function () {
   let websiteValidation = new RegExp("^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$");
   let urlValidate = new RegExp("^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$")
   //let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
+
+  function checkInstagram(url) {
+    let prefix = url.substring(0, 25);
+    if (url != "") {
+      if (prefix != "https://www.instagram.com") {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function checkTelegram(url) {
+    let prefix = url.substring(0, 12);
+    if (url != "") {
+      if (prefix != "https://t.me") {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   //map initialize variables
   let finalLocation = { lat: "", lng: "" };
@@ -186,6 +218,20 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
+      } else if (instagram != "" && checkInstagram(instagram) == false) {
+        $.toast({
+          heading: "فرمت آدرس اینستاگرام وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
+      } else if (telegram != "" && checkTelegram(telegram) == false) {
+        $.toast({
+          heading: "فرمت آدرس تلگرام وارد شده صحیح نیست",
+          showHideTransition: "slide",
+          icon: "error",
+          position: "top-left",
+        });
       } else if (website != "" && !urlValidate.exec(finalWebsite)) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
@@ -317,6 +363,20 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
+    } else if (instagram != "" && checkInstagram(instagram) == false) {
+      $.toast({
+        heading: "فرمت آدرس اینستاگرام وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
+    } else if (telegram != "" && checkTelegram(telegram) == false) {
+      $.toast({
+        heading: "فرمت آدرس تلگرام وارد شده صحیح نیست",
+        showHideTransition: "slide",
+        icon: "error",
+        position: "top-left",
+      });
     } else if (website != "" && !urlValidate.exec(finalWebsite)) {
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
@@ -342,6 +402,9 @@ $(document).ready(function () {
           let status = JSON.parse(dataResult);
           $("#loading").fadeOut();
           if (status.statusCode == 200) {
+            count++;
+            leadDetails["count"] = count;
+            localStorage.setItem("history", leadDetails);
             $(".after-check").fadeIn();
             $("#check").fadeOut();
             $(".hide-submit").fadeIn().css("display", "inline");

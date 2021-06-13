@@ -13,7 +13,7 @@ $telegram = $_POST['telegram'];
 $website = $_POST['website'];
 $duplicateLandLine = mysqli_query($conn, "select * from gheir_hozoori where landline='$landline' and landline<>''");
 $duplicatePhone = mysqli_query($conn, "select * from gheir_hozoori where phone='$phone' and phone<>''");
-$duplicateInstagram = mysqli_query($conn, "select * from gheir_hozoori where instagram like '%".$instagram."%' and instagram<>''");
+$duplicateInstagram = $instagram != "" ? mysqli_query($conn, "select * from gheir_hozoori where instagram like '%" . $instagram . "%' and instagram<>''") : mysqli_query($conn, "select * from gheir_hozoori where instagram like '$instagram' and instagram<>''");
 $duplicateTelegram = mysqli_query($conn, "select * from gheir_hozoori where telegram='$telegram' and telegram<>''");
 $duplicateWebsite = mysqli_query($conn, "select * from gheir_hozoori where website='$website' and website<>''");
 if (mysqli_num_rows($duplicateLandLine) > 0) {
