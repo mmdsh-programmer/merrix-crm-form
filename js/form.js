@@ -60,6 +60,16 @@ $(document).ready(function () {
     return true;
   }
 
+  function checkWebsite(url) {
+    let prefix = url.substring(0, 4);
+    if (url != "") {
+      if (prefix == "www.") {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   //map initialize variables
   let finalLocation = { lat: "", lng: "" };
@@ -232,7 +242,7 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && !urlValidate.exec(finalWebsite)) {
+      } else if (website != "" && !urlValidate.exec(finalWebsite) || checkWebsite(website) == false) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -377,7 +387,7 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && !urlValidate.exec(finalWebsite)) {
+    } else if (website != "" && !urlValidate.exec(finalWebsite) || checkWebsite(website) == false) {
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
