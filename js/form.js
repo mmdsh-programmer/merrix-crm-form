@@ -43,7 +43,7 @@ $(document).ready(function () {
   function checkInstagram(url) {
     let prefix = url.substring(0, 25);
     if (url != "") {
-      if (prefix != "https://www.instagram.com") {
+      if (prefix != "https://www.instagram.com" || url.charAt(url.length-1) == "/") {
         return false;
       }
     }
@@ -53,7 +53,7 @@ $(document).ready(function () {
   function checkTelegram(url) {
     let prefix = url.substring(0, 12);
     if (url != "") {
-      if (prefix != "https://t.me") {
+      if (prefix != "https://t.me" || url.charAt(url.length-1) == "/") {
         return false;
       }
     }
@@ -63,7 +63,7 @@ $(document).ready(function () {
   function checkWebsite(url) {
     let prefix = url.substring(0, 4);
     if (url != "") {
-      if (prefix == "www.") {
+      if (prefix == "www." || url.charAt(url.length-1) == "/") {
         return false;
       }
     }
