@@ -43,7 +43,7 @@ $(document).ready(function () {
   function checkInstagram(url) {
     let prefix = url.substring(0, 25);
     if (url != "") {
-      if (prefix != "https://www.instagram.com" || url.charAt(url.length-1) == "/") {
+      if (prefix != "https://www.instagram.com" || url.charAt(url.length - 1) == "/") {
         return false;
       }
     }
@@ -53,7 +53,7 @@ $(document).ready(function () {
   function checkTelegram(url) {
     let prefix = url.substring(0, 12);
     if (url != "") {
-      if (prefix != "https://t.me" || url.charAt(url.length-1) == "/") {
+      if (prefix != "https://t.me" || url.charAt(url.length - 1) == "/") {
         return false;
       }
     }
@@ -63,7 +63,7 @@ $(document).ready(function () {
   function checkWebsite(url) {
     let prefix = url.substring(0, 4);
     if (url != "") {
-      if (prefix == "www." || url.charAt(url.length-1) == "/") {
+      if (prefix == "www." || url.charAt(url.length - 1) == "/") {
         return false;
       }
     }
@@ -126,7 +126,9 @@ $(document).ready(function () {
         required: true,
       },
       clue: {
-        required: true,
+        required: function (element) {
+          return $("#service-type").val() == "حضوری" ? false : true
+        },
       },
     },
     messages: {
@@ -175,8 +177,8 @@ $(document).ready(function () {
 
   $("#service-type").change(() => {
     $("#service-type").val() == "حضوری"
-      ? $(".map-holder").fadeIn()
-      : $(".map-holder").fadeOut();
+      ? ($(".map-holder").fadeIn(), $("#clue-holder").fadeOut())
+      : ($(".map-holder").fadeOut(), $("#clue-holder").fadeIn());
   });
 
   $("#gheir-hozoori").on("submit", function (e) {
@@ -269,7 +271,7 @@ $(document).ready(function () {
             //whatsapp: whatsapp,
             description: description,
             website: website == "" ? website : finalWebsite,
-            clue: clue,
+            clue: service_type == "حضوری" ? "ویزیت حضوری" : clue,
             service_type: service_type,
             lat: service_type == "حضوری" ? finalLocation.lat : "",
             lng: service_type == "حضوری" ? finalLocation.lng : "",
