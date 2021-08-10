@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم ثبت اطلاعات</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="map/css/mapp.min.css">
+    <link rel="stylesheet" href="map/css/fa/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main class="main">
+        <div id="loading">
+            <span>در حال ارسال اطلاعات...</span>
+        </div>
+        <nav class="navigation">
+            <div class="container transparent">
+                <a href="#" class="navigation-button" id="signout">خروج از حساب</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="gheir-hozoori">
+                        <h2 class="form-title">فرم ثبت اطلاعات</h2>
+                        <div class="form-group">
+                            <label for="service-type">نوع سرویس :</label>
+                            <div class="form-select">
+                                <select name="service-type" id="service-type">
+                                    <option value="غیر حضوری">غیر حضوری</option>
+                                    <option value="حضوری">حضوری</option>
+                                </select>
+                                <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="landline">شماره تماس ثابت :</label>
+                                <input type="tel" name="landline" id="landline" placeholder="مثال : 05135556644" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">شماره تماس همراه :</label>
+                                <input type="tel" name="phone" id="phone" placeholder="مثال : 09125558877" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="instagram">آیدی اینستاگرام :</label>
+                                <input type="text" name="instagram" id="instagram"
+                                    placeholder="مثال : https://www.instagram.com/merrix" />
+                            </div>
+                            <div class="form-group">
+                                <label for="telegram">آیدی تلگرام :</label>
+                                <input type="text" name="telegram" id="telegram"
+                                    placeholder="مثال : https://t.me/merrix" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="website">وبسایت :</label>
+                            <input type="text" name="website" id="website" placeholder="مثال : merrix.com">
+                        </div>
+                        <div class="after-check">
+                            <div class="form-group">
+                                <label for="store_name">نام فروشگاه :</label>
+                                <input type="text" name="store_name" id="store_name" placeholder="مثال : پاپیروس"
+                                    required />
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="province">استان :</label>
+                                    <div class="form-select">
+                                        <select name="province" id="province" class="province">
+                                        </select>
+                                        <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">شهر :</label>
+                                    <div class="form-select">
+                                        <select name="city" id="city" class="city">
+                                        </select>
+                                        <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">آدرس :</label>
+                                <textarea name="address" id="address" rows="2" class="text-area"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="area">منطقه :</label>
+                                    <div class="form-select">
+                                        <select name="area" id="area">
+                                            <option value=""></option>
+                                            <option value="1"> 1</option>
+                                            <option value="2"> 2</option>
+                                            <option value="3"> 3</option>
+                                            <option value="4"> 4</option>
+                                            <option value="5"> 5</option>
+                                            <option value="6"> 6</option>
+                                            <option value="7"> 7</option>
+                                            <option value="8"> 8</option>
+                                            <option value="9"> 9</option>
+                                            <option value="10"> 10</option>
+                                            <option value="11"> 11</option>
+                                            <option value="12"> 12</option>
+                                            <option value="13"> 13</option>
+                                            <option value="14"> 14</option>
+                                            <option value="15"> 15</option>
+                                            <option value="16"> 16</option>
+                                            <option value="17"> 17</option>
+                                            <option value="18"> 18</option>
+                                            <option value="19"> 19</option>
+                                            <option value="20"> 20</option>
+                                            <option value="21"> 21</option>
+                                            <option value="22"> 22</option>
+                                        </select>
+                                        <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="job">رسته شغلی :</label>
+                                    <div class="form-select">
+                                        <select name="job" id="job">
+                                            <option value=""></option>
+                                            <option value="لوازم التحریر">لوازم التحریر</option>
+                                            <option value="کتاب فروشی">کتاب فروشی</option>
+                                            <option value="خرازی">خرازی</option>
+                                            <option value="گل فروشی">گل فروشی</option>
+                                            <option value="ابزار گل">ابزار گل</option>
+                                            <option value="مارکت">مارکت</option>
+                                            <option value="تم تولد">تم تولد</option>
+                                            <option value="قنادی">قنادی</option>
+                                            <option value="لوازم قنادی">لوازم قنادی</option>
+                                            <option value="اسباب بازی">اسباب بازی</option>
+                                            <option value="گالری - کادویی">گالری - کادویی</option>
+                                            <option value="مشتری نهایی">مشتری نهایی</option>
+                                            <option value="لوازم اداری">لوازم اداری</option>
+                                            <option value="فروشگاه آنلاین">فروشگاه آنلاین</option>
+                                            <option value="لوازم آشپزخانه">لوازم آشپزخانه</option>
+                                            <option value="سایر">سایر</option>
+                                        </select>
+                                        <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">توضیحات :</label>
+                                <input type="text" name="description" id="description" />
+                            </div>
+                            <div class="form-group" id="clue-holder">
+                                <label for="clue">منبع سرنخ :</label>
+                                <div class="form-select">
+                                    <select name="clue" id="clue">
+                                        <option value=""></option>
+                                        <option value="معرفی دوستان">معرفی دوستان</option>
+                                        <option value="Web">Web</option>
+                                        <option value="ای نماد">ای نماد</option>
+                                        <option value="اینستاگرام">اینستاگرام</option>
+                                        <option value="تلگرام">تلگرام</option>
+                                        <option value="دیگر">دیگر</option>
+                                    </select>
+                                    <span class="select-icon"><i class="fa fa-angle-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="map-holder">
+                                <div id="app"></div>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <input type="reset" value="خالی کردن فیلد ها" class="submit" name="reset" id="reset" />
+                            <input type="submit" value="تایید" class="submit hide-submit" name="submit" id="submit" />
+                            <input id="check" type="button" class="submit" value="بررسی اطلاعات">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="signup-img">
+                    <img src="images/signup.jpg" alt="signup-image" title="فرم تکمیل اطلاعات">
+                    <div class="cover"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="text/javascript" src="map/js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+        integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+        crossorigin="anonymous"></script>
+    <script src="js/loadCities.js"></script>
+    <script type="text/javascript" src="map/js/mapp.env.js"></script>
+    <script type="text/javascript" src="map/js/mapp.min.js"></script>
+    <script src="js/form.js"></script>
+</body>
+
+</html>
