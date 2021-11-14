@@ -20,30 +20,35 @@ $(document).ready(function () {
   //count new leads
   let count = 0;
   let today = new Date();
-  let dd = String(today.getDate()).padStart(2, '0');
-  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
   let yyyy = today.getFullYear();
 
-  today = mm + '/' + dd + '/' + yyyy;
-  let leadDetails = { "date": today, "count": count };
+  today = mm + "/" + dd + "/" + yyyy;
+  let leadDetails = { date: today, count: count };
   localStorage.setItem("history", localStorage.getItem(history));
 
   let landLineValidation = new RegExp("^0[0-9]{2,}[0-9]{7,}$");
-  let phoneValidation = new RegExp(
-    "^(0)?9\d{9}$"
-  );
+  let phoneValidation = new RegExp("^(0)?9d{9}$");
   let instagramValidation = new RegExp(
     "^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:.(?!.))){0,28}(?:[A-Za-z0-9_]))?)$"
   );
   let telegramValidation = new RegExp("^[a-z0-9_-]{3,16}$");
-  let websiteValidation = new RegExp("^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$");
-  let urlValidate = new RegExp("^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$")
+  let websiteValidation = new RegExp(
+    "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9].[a-zA-Z]{2,}$"
+  );
+  let urlValidate = new RegExp(
+    "^(?:(?:(?:https?|ftp):)?//)(?:S+(?::S*)?@)?(?:(?!(?:10|127)(?:.d{1,3}){3})(?!(?:169.254|192.168)(?:.d{1,3}){2})(?!172.(?:1[6-9]|2d|3[0-1])(?:.d{1,3}){2})(?:[1-9]d?|1dd|2[01]d|22[0-3])(?:.(?:1?d{1,2}|2[0-4]d|25[0-5])){2}(?:.(?:[1-9]d?|1dd|2[0-4]d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:.(?:[a-z\u00a1-\uffff]{2,})))(?::d{2,5})?(?:[/?#]S*)?$"
+  );
   //let websiteValidation = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi);
 
   function checkInstagram(url) {
     let prefix = url.substring(0, 25);
     if (url != "") {
-      if (prefix != "https://www.instagram.com" || url.charAt(url.length - 1) == "/") {
+      if (
+        prefix != "https://www.instagram.com" ||
+        url.charAt(url.length - 1) == "/"
+      ) {
         return false;
       }
     }
@@ -102,18 +107,18 @@ $(document).ready(function () {
         maxlength: 11,
       },
       phone: {
-        required: false,
+        required: true,
         digits: true,
         minlength: 11,
         maxlength: 11,
       },
       instagram: {
         required: false,
-        url: true
+        url: true,
       },
       telegram: {
         required: false,
-        url: true
+        url: true,
       },
       /*whatsapp: {
         required: false,
@@ -136,7 +141,7 @@ $(document).ready(function () {
       },
       clue: {
         required: function (element) {
-          return $("#service-type").val() == "حضوری" ? false : true
+          return $("#service-type").val() == "حضوری" ? false : true;
         },
       },
     },
@@ -151,15 +156,16 @@ $(document).ready(function () {
         maxlength: "حداکثر طول 11 رقم میباشد",
       },
       phone: {
+        required: "شماره همراه اجباری است",
         digits: "فقط عدد مجاز است",
         minlength: "حداقل طول 11 رقم میباشد",
         maxlength: "حداکثر طول 11 رقم میباشد",
       },
       instagram: {
-        url: "آیدی اینستاگرام صحیح نمیباشد"
+        url: "آیدی اینستاگرام صحیح نمیباشد",
       },
       telegram: {
-        url: "آیدی تلگرام صحیح نمیباشد"
+        url: "آیدی تلگرام صحیح نمیباشد",
       },
       /*whatsapp: {
         digits: "فقط عدد مجاز است",
@@ -213,12 +219,7 @@ $(document).ready(function () {
       //let finalInstagram = `https://instagram.com/${instagram}`;
       //let finalTelegram = `https://t.me/${telegram}`;
       let finalWebsite = `http://${website}`;
-      if (
-        landline == "" &&
-        phone == "" &&
-        instagram == "" &&
-        telegram == ""
-      ) {
+      if (landline == "" && phone == "" && instagram == "" && telegram == "") {
         $.toast({
           heading: "لطفا حداقل یک لینک شبکه اجتماعی یا شماره تلفن وارد کنید",
           showHideTransition: "slide",
@@ -260,7 +261,10 @@ $(document).ready(function () {
           icon: "error",
           position: "top-left",
         });
-      } else if (website != "" && !urlValidate.exec(finalWebsite) || checkWebsite(website) == false) {
+      } else if (
+        (website != "" && !urlValidate.exec(finalWebsite)) ||
+        checkWebsite(website) == false
+      ) {
         $.toast({
           heading: "فرمت آدرس وبسایت صحیح نیست",
           showHideTransition: "slide",
@@ -372,12 +376,7 @@ $(document).ready(function () {
     //let finalInstagram = `https://instagram.com/${instagram}`;
     //let finalTelegram = `https://t.me/${telegram}`;
     let finalWebsite = `http://${website}`;
-    if (
-      landline == "" &&
-      phone == "" &&
-      instagram == "" &&
-      telegram == ""
-    ) {
+    if (landline == "" && phone == "" && instagram == "" && telegram == "") {
       $.toast({
         heading: "لطفا حداقل یک شبکه اجتماعی یا شماره تلفن وارد کنید",
         showHideTransition: "slide",
@@ -412,7 +411,10 @@ $(document).ready(function () {
         icon: "error",
         position: "top-left",
       });
-    } else if (website != "" && !urlValidate.exec(finalWebsite) || checkWebsite(website) == false) {
+    } else if (
+      (website != "" && !urlValidate.exec(finalWebsite)) ||
+      checkWebsite(website) == false
+    ) {
       $.toast({
         heading: "فرمت آدرس وبسایت صحیح نیست",
         showHideTransition: "slide",
